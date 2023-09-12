@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- About -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel | Product</title>
+    <!-- Linking -->
+    <link rel="stylesheet" href="styles/index.css" />
+    <link href="styles/dist/output.css" rel="stylesheet" />
+    <script src="js/script.js" defer></script>
+    <!-- Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-bgColor text-white flex gap-5 p-5 overflow-hidden">
+    <!-- Sidebar -->
+    <div
+      class="bg-black2 p-3 rounded-xl w-[256px] sticky flex flex-col gap-4 shd"
+    >
+      <div class="flex items-center gap-1">
+        <!-- <img src="./assets/images/logo.png" alt="logo" class="w-9 h-9" /> -->
+        <h1 class="font-semibold text-amber-600 text-2xl" id="sidebarTitle">
+          Admin Panel
+        </h1>
+      </div>
+      <!-- links -->
+      <div class="border-y py-1 w-full" id="links">
+        <button class="w-full active" data-target="productListing">
+          <div
+            class="flex items-center gap-3 p-2 rounded-md hover:bg-zinc-600 cursor-pointer"
+          >
+            <img src="./assets/icons/dashboard.svg" class="w-5 h-5" alt="" />
+            <p class="font-medium text-sm">Product Listing</p>
+          </div>
+        </button>
+        <button class="w-full" data-target="createNew">
+          <div
+            class="flex items-center gap-3 p-2 rounded-md hover:bg-zinc-600 cursor-pointer"
+          >
+            <img src="./assets/icons/new2.svg" class="w-5 h-5" alt="" />
+            <p class="font-medium text-sm">Create a new</p>
+          </div>
+        </button>
+      </div>
+
+      <!-- help and support -->
+      <div class="h-full w-full flex items-end">
+        <h2 class="text-sm text-center w-full text-zinc-500 cursor-pointer">
+          ? Help and Support
+        </h2>
+      </div>
+    </div>
+    <!-- wrapper -->
+    <div class="flex-1 h-[96vh] flex flex-col gap-5 overflow-y-auto">
+      <!-- Header -->
+      <header
+        class="bg-black2 shadow-xl rounded-2xl p-3 flex justify-between items-center boxShadow"
+      >
+        <div class="flex gap-3 items-center h-full">
+          <!-- Image -->
+          <div>
+            <img
+              src="./assets/user.jpg"
+              alt=""
+              class="w-14 h-14 object-cover rounded-full"
+            />
+          </div>
+
+          <!-- Name -->
+          <div class="flex flex-col gap-">
+            <p class="font-semibold text-[18px]">Sweta Shreya</p>
+            <p class="text-[15px] text-zinc-400">Product Manager Associate</p>
+          </div>
+
+          <div class="w-[2px] bg-zinc-200 h-10 rounded-full"></div>
+
+          <!-- Date -->
+          <div class="bg-black4 p-2 rounded-full flex items-center gap-1">
+            <img src="./assets/icons/cal.svg" alt="" />
+            <p class="font-medium text-sm">
+              <script>
+                var today = new Date();
+                var date =
+                  today.getFullYear() +
+                  "-" +
+                  (today.getMonth() + 1) +
+                  "-" +
+                  today.getDate();
+                document.write(date);
+              </script>
+            </p>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="flex gap-2 items-center">
+          <button
+            class="bg-sky-500 font-medium text-sm text-white p-2 rounded-xl flex items-center gap-1 hover:shadow-lg"
+          >
+            <img src="./assets/icons/new.svg" class="w-5 h-5 mb-[2px]" alt="" />
+
+            <p>New</p>
+          </button>
+          <button
+            class="bg-black4 p-2 rounded-full flex items-center gap-1 hover:shadow-lg"
+          >
+            <img src="./assets/icons/bell.svg" class="w-6 h-6" alt="" />
+          </button>
+          <button
+            class="bg-black4 p-2 rounded-full flex items-center gap-1 hover:shadow-lg"
+          >
+            <img src="./assets/icons/setting.svg" class="w-7 h-7" alt="" />
+            <p class="font-medium text-sm">Settings</p>
+          </button>
+        </div>
+      </header>
+
+      <div class="flex flex-col gap-5 content-component" id="productListing">
+        <h1 class="font-medium text-3xl pt-2">Dashboard</h1>
+
+        <!-- Analysis Data -->
+        <div class="flex items-center gap-5">
+          <!-- Total -->
+          <div
+            class="min-w-[200px] h-full p-4 bg-black2 rounded-xl font-semibold flex flex-col gap-2 text-xl hover:scale-[102%] cursor-default shd"
+          >
+            <img src="./assets/icons/truck.svg" class="w-12 h-12" alt="" />
+            <h1>Total <span class="text-[#82D565]">Products</span></h1>
+            <h1 class="text-4xl font-semibold" id="totalProducts">0</h1>
+          </div>
+
+          <!-- Cat -->
+          <div
+            class="min-w-[200px] h-full p-4 bg-black2 rounded-xl font-semibold flex flex-col gap-2 text-xl hover:scale-[102%] cursor-default shd"
+          >
+            <img src="./assets/icons/category.svg" class="w-12 h-12" alt="" />
+            <h1>List <span class="text-[#007AFF]">Categories</span></h1>
+            <h1 class="text-2xl font-semibold" id="catDisplay">Electronics</h1>
+          </div>
+        </div>
+
+        <!-- Searchbar -->
+        <div
+          class="bg-black2 sticky top-0 left-0 rounded-xl shd p-2 flex flex-col gap-2"
+        >
+          <div class="flex justify-between gap-3">
+            <div
+              class="md:max-w-[30rem] w-full flex items-center gap-1 bg-black3 rounded-md overflow-hidden px-3"
+            >
+              <img src="./assets/icons/search.svg" class="w-5 h-5" alt="" />
+              <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Search for products..."
+                class="w-full bg-transparent p-2 outline-none placeholder:text-white"
+              />
+            </div>
+            <div class="flex items-center gap-1">
+              <button
+                id="filterBtn"
+                class="px-3 py-1 rounded-md hover:bg-black2"
+              >
+                Filter
+              </button>
+              <button id="sortBtn" class="px-3 py-1 rounded-md hover:bg-black2">
+                Sort
+              </button>
+            </div>
+          </div>
+
+          <!-- Filtering and sorting -->
+          <div id="custom" class="flex gap-2">
+            <!-- Filter -->
+            <div
+              id="filterValue"
+              class="text-[15px] flex gap-3 px-2 py-[3px] rounded-full border border-blue-500 bg-blue-50 text-blue-600 overflow-hidden"
+            >
+              <select class="outline-none bg-transparent">
+                <option value="all">Filter option</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="home">Home</option>
+                <option value="furniture">Furniture</option>
+                <option value="books">Books</option>
+                <option value="health">Health</option>
+              </select>
+
+              <button>
+                <img
+                  src="./assets/icons/cross.svg"
+                  alt="cross"
+                  class="w-5 h-5"
+                />
+              </button>
+            </div>
+
+            <!-- Sorting -->
+            <div
+              id="sortValue"
+              class="text-[15px] flex gap-3 px-2 py-[3px] rounded-full border border-blue-500 bg-blue-50 text-blue-600 overflow-hidden"
+            >
+              <select name="filterValue" class="outline-none bg-transparent">
+                <option value="all">Sort option</option>
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+                <option value="quantity">Quantity</option>
+              </select>
+
+              <button>
+                <img
+                  src="./assets/icons/cross.svg"
+                  alt="cross"
+                  class="w-5 h-5"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display Products -->
+        <div class="view w-full flex justify-center">
+          <table
+            class="max-w-[60rem] bg-black2 rounded-md shd w-full p-2 overflow-x-auto table-auto"
+          >
+            <thead class="border-b text-[15px] font-medium bg-black3">
+              <tr>
+                <td class="first:pl-4 p-2 text-left">Product Name</td>
+                <td class="p-2 text-left">Quantity</td>
+                <td class="p-2 text-left">Price</td>
+                <td class="p-2 text-left">Category</td>
+                <td class="last:pr-4 p-2 text-left">Actions</td>
+              </tr>
+            </thead>
+            <tbody class="text-zinc-200 text-[14px]" id="view">
+              <!-- <tr class="last:border-none border-b">
+                <td class="first:pl-4 p-2">Mobile</td>
+                <td class="p-2">Mobile</td>
+                <td class="p-2">Mobile</td>
+                <td class="p-2">Mobile</td>
+                <td class="last:pr-4 p-2 flex gap-3">
+                  <button class="text-red-500 hover:text-red-600">
+                    <img src="./assets/icons/bin.svg" class="w-5 h-5" alt="" />
+                  </button>
+                </td>
+              </tr> -->
+              <tr>
+                <td colspan="5" class="text-center">No Products</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex-col gap-5 hidden content-component" id="createNew">
+        <h1 class="font-medium text-3xl pt-2">Add Product</h1>
+
+        <form
+          id="addProductForm"
+          class="max-w-[70rem] boxShadow bg-black2 rounded-xl p-3 flex flex-col md:flex-row gap-5"
+        >
+          <div class="flex-1 flex flex-col gap-5">
+            <!-- Name Field -->
+            <div class="flex flex-col gap-1">
+              <label for="name" class="text-[15px] font-medium">Name</label>
+              <input
+                type="text"
+                name="name"
+                autocomplete="off"
+                spellcheck="false"
+                id="name"
+                placeholder="Enter product name..."
+                class="rounded-md px-2 py-1 text-[16px] bg-black3 border-none focus-within:outline-blue-500"
+              />
+            </div>
+
+            <!-- Existing names -->
+            <div
+              id="existingNameList"
+              class="border border-zinc-200 rounded-md text-amber-500"
+            ></div>
+          </div>
+
+          <div class="flex-1 flex flex-col gap-3">
+            <!-- Quantity Field -->
+            <div class="flex flex-col gap-1">
+              <label for="quantity" class="text-[15px] font-medium"
+                >Quantity</label
+              >
+              <input
+                type="number"
+                name="quantity"
+                autocomplete="off"
+                spellcheck="false"
+                id="quantity"
+                placeholder="No of products..."
+                class="rounded-md px-2 py-1 text-[16px] bg-black3 border-none focus-within:outline-blue-500"
+              />
+            </div>
+
+            <!-- Price Field -->
+            <div class="flex flex-col gap-1">
+              <label for="price" class="text-[15px] font-medium">Price</label>
+              <input
+                type="number"
+                name="price"
+                autocomplete="off"
+                spellcheck="false"
+                id="price"
+                placeholder="Price of product..."
+                class="rounded-md px-2 py-1 text-[16px] bg-black3 border-none focus-within:outline-blue-500"
+              />
+            </div>
+
+            <!-- Category Field -->
+            <div class="flex flex-col gap-1">
+              <label for="category" class="text-[15px] font-medium"
+                >Category</label
+              >
+              <select
+                name="category"
+                id="category"
+                aria-placeholder="Select category"
+                class="rounded-md px-2 py-1 text-[16px] bg-black3 border-none focus-within:outline-blue-500"
+              >
+                <option value="">select</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="home">Home</option>
+                <option value="furniture">Furniture</option>
+                <option value="books">Books</option>
+                <option value="health">Health</option>
+              </select>
+            </div>
+            <div class="h-full">
+              <button
+                type="submit"
+                class="w-full p-2 font-medium text-white hover:bg-green-600 transition-all rounded-md bg-green-500"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
